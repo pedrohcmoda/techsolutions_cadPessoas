@@ -10,8 +10,11 @@ public class GenId {
 
 
     public int getIdPrimo(){
-        int id = new Random().nextInt();
-        if(!isPrime(id)) return getIdPrimo();
+        Random random = new Random();
+        int id;
+        do {
+            id = random.nextInt();
+        } while (!isPrime(id));
         AppLog.getInstance().info("Numero gerado com sucesso!");
         return id;
     }
