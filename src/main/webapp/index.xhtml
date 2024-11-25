@@ -6,11 +6,83 @@
 
     <h:head>
         <title>Cadastro de Individuos</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                background-color: #e6f7ff; /* Fundo azul claro */
+                color: #003366; /* Texto azul escuro */
+            }
+
+            h3 {
+                color: #00509e; /* Azul médio */
+                border-bottom: 2px solid #003366; /* Linha azul escura */
+                padding-bottom: 5px;
+            }
+
+            form {
+                background-color: #ffffff; /* Fundo branco */
+                border: 1px solid #00509e; /* Borda azul médio */
+                border-radius: 5px;
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0, 80, 158, 0.2); /* Sombra azul */
+                margin-bottom: 20px;
+            }
+
+            input, select {
+                width: 100%;
+                padding: 8px;
+                margin: 10px 0;
+                border: 1px solid #00509e; /* Borda azul médio */
+                border-radius: 4px;
+                background-color: #f0f8ff; /* Fundo azul muito claro */
+                color: #003366; /* Texto azul escuro */
+            }
+
+            input:focus, select:focus {
+                border-color: #003366; /* Azul escuro ao focar */
+                outline: none;
+                box-shadow: 0 0 5px #00509e; /* Sombra azul ao focar */
+            }
+
+            .button {
+                background-color: #00509e; /* Fundo azul médio */
+                color: #ffffff; /* Texto branco */
+                border: none;
+                padding: 10px 15px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .button:hover {
+                background-color: #003366; /* Azul escuro ao passar o mouse */
+            }
+
+            .dataTable {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+                background-color: #ffffff;
+            }
+
+            .dataTable th, .dataTable td {
+                border: 1px solid #00509e; /* Azul médio */
+                padding: 10px;
+                text-align: left;
+                color: #003366; /* Azul escuro */
+            }
+
+            .dataTable th {
+                background-color: #00509e; /* Azul médio */
+                color: #ffffff; /* Texto branco */
+            }
+        </style>
     </h:head>
 
-    <h:graphicImage value="/images/teamFriends.png" style="float: right" width="120" height="110"/>
     <h:body>
+        <h:graphicImage value="/images/teamFriends.png" style="float: right" width="120" height="110"/>
         <h:form>
+            <h3>Cadastro de Individuos</h3>
             id <h:inputText value="#{beanJFPessoa.id}" size="12"/>
             nome <h:inputText value="#{beanJFPessoa.nome}" size="28"/>
 
@@ -18,13 +90,13 @@
                 <f:selectItem itemValue="" itemLabel="=== Selecione uma Cidade ===" />
                 <f:selectItems value="#{beanJFCidade.all}" var="c" itemLabel="#{c.nome}" itemValue="#{c.id}" />
             </h:selectOneMenu>
-            <h:commandButton value="[]" action="#{beanJFPessoa.newID()}" />
-            <h:commandButton value="+" action="#{beanJFPessoa.add()}" />
+            <h:commandButton value="[]" action="#{beanJFPessoa.newID()}" styleClass="button" />
+            <h:commandButton value="+" action="#{beanJFPessoa.add()}" styleClass="button" />
         </h:form>
-    <hr/>
+        <hr/>
         <h3>== Lista de clientes cadastrados ==</h3>
         <h:form>
-            <h:dataTable value="#{beanJFPessoa.all}" var="pessoa">
+            <h:dataTable value="#{beanJFPessoa.all}" var="pessoa" styleClass="dataTable">
                 <h:column>
                     <h:outputText value="#{pessoa.id}" />
                 </h:column>
@@ -34,12 +106,11 @@
                 <h:column>
                     <h:outputText value="#{pessoa.cidade.nome}" />
                 </h:column>
-
             </h:dataTable>
         </h:form>
-<h:form>
-    <br/><br/><br/>
-    <h:outputLink value="#{facesContext.externalContext.requestContextPath}/rest/application.wadl">WADL</h:outputLink>
-</h:form>
+        <h:form>
+            <br/><br/><br/>
+            <h:outputLink value="#{facesContext.externalContext.requestContextPath}/rest/application.wadl">WADL</h:outputLink>
+        </h:form>
     </h:body>
 </html>
